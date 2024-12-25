@@ -1,6 +1,6 @@
 # vscode-copy-gitea-permalink
 
-Originally forked from [hogashi/vscode-copy-gitea-permalink](https://gitea.com/hogashi/vscode-copy-gitea-permalink).
+Originally forked from [hogashi/vscode-copy-github-permalink](https://github.com/hogashi/vscode-copy-github-permalink).
 
 
 Copies Gitea permalink of active file (name and line) to clipboard on VSCode. https://marketplace.visualstudio.com/items?itemName=ivorynoise.vscode-copy-gitea-permalink
