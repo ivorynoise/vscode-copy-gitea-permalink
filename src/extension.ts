@@ -81,12 +81,11 @@ export function activate(context: vscode.ExtensionContext) {
 
       repository.getCommit('HEAD').then((commit) => {
         const treeOrBlob = filePath.length === 0 ? 'tree' : 'blob';
-        // https://github.com/ivorynoise/vscode-copy-github-permalink/blob/b606f22b0b0346575c53fbd7161e66f4c155f35a/tsconfig.json#L5 <- github
-        // https://gitea.com/deepaka/testing/src/commit/9198c49f714c99d59a2d24cb7a9fba42be635a73/code.js#L17 <- gitea
-        // const url = `${httpsUrl}/${treeOrBlob}/${commit.hash}/${filePath}`;
-        const url = `${httpsUrl}/src/commit/${commit.hash}/${filePath}`;
-        vscode.env.clipboard.writeText(url);
-        vscode.window.showInformationMessage(`"${url}" copied`, {
+        // Create and encode the full URL
+        const rawUrl = `${httpsUrl}/src/commit/${commit.hash}/${filePath}`;
+        const encodedUrl = new URL(rawUrl).toString();
+        vscode.env.clipboard.writeText(encodedUrl);
+        vscode.window.showInformationMessage(`"${encodedUrl}" copied`, {
           modal: false,
         });
       });
