@@ -66,7 +66,7 @@ export function activate(context: vscode.ExtensionContext) {
 
       const upperPath = repository.rootUri.fsPath;
       const relativePath = path.relative(upperPath, absolutePath);
-      let filePath = upath.toUnix(relativePath);
+      let filePath = encodeURIComponent(upath.toUnix(relativePath));
 
       const selection = activeTextEditor.selection;
       if (selection) {
@@ -84,7 +84,7 @@ export function activate(context: vscode.ExtensionContext) {
         // Create and encode the full URL
         const rawUrl = `${httpsUrl}/src/commit/${commit.hash}/${filePath}`;
         const encodedUrl = new URL(rawUrl).toString();
-        vscode.env.clipboard.writeText(encodedUrl);
+        vscode.env.clipboard.writeText(rawUrl);
         vscode.window.showInformationMessage(`"${encodedUrl}" copied`, {
           modal: false,
         });
